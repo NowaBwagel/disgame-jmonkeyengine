@@ -9,14 +9,14 @@ package com.nowabwagel.disengine.entitysystem;
  * @author Noah Bergl
  */
 public class EntityIdGenerator {
-    
+
     private long id;
-    
-    public EntityIdGenerator(){
+
+    public EntityIdGenerator() {
         id = Long.MIN_VALUE;
     }
-    
-    public synchronized long getNextId(){
+
+    public synchronized long getNextId() {
         id++;
         return id;
     }

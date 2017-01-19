@@ -14,22 +14,21 @@ import com.jme3.scene.Node;
  * @author Noah Bergl
  */
 public class EntityDisplayAppState extends AbstractAppState {
-    
+
     private Node rootNode;
-    
-    public EntityDisplayAppState(Node node){
+
+    public EntityDisplayAppState(Node node) {
         rootNode = node;
     }
-    
+
     @Override
-    public void initialize(AppStateManager stateManager, Application app){
+    public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-        
-        
+
+
     }
-    
+
     @Override
-    public void update(float tpf){
-        
+    public void update(float tpf) {
     }
 }

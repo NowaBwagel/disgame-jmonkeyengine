@@ -16,12 +16,12 @@ public class DefaultEntityData implements EntityData {
 
     private ConcurrentMap<Class, ConcurrentMap<EntityId, ? extends Component>> componentsMap;
     private EntityIdGenerator idGenerator;
-    
+
     public DefaultEntityData() {
         componentsMap = new ConcurrentHashMap<Class, ConcurrentMap<EntityId, ? extends Component>>();
         idGenerator = new EntityIdGenerator();
     }
-    
+
     public EntityId newEntity() {
         return new EntityId(idGenerator.getNextId());
     }
@@ -49,5 +49,4 @@ public class DefaultEntityData implements EntityData {
     public Set<EntityId> getAllEntityWithComponents(Class<? extends Component>... components) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }
