@@ -5,6 +5,7 @@
 package com.nowabwagel.disengine.entitysystem;
 
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
@@ -16,8 +17,13 @@ public class DefaultEntityData implements EntityData {
     private ConcurrentMap<Class, ConcurrentMap<EntityId, ? extends Component>> componentsMap;
     private EntityIdGenerator idGenerator;
     
+    public DefaultEntityData() {
+        componentsMap = new ConcurrentHashMap<Class, ConcurrentMap<EntityId, ? extends Component>>();
+        idGenerator = new EntityIdGenerator();
+    }
+    
     public EntityId newEntity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new EntityId(idGenerator.getNextId());
     }
 
     public void removeEntity(EntityId entity) {
