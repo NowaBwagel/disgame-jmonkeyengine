@@ -44,7 +44,7 @@ public class EntitySet implements EntityEventListener {
     }
     //TODO: thinking abot changing to updateSetChanges
 
-    public boolean applySetChanges() {
+    public boolean shouldApplySetChanges() {
         if (isNew) {
             isNew = false;
             return true;

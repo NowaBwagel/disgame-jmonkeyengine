@@ -1,6 +1,8 @@
 package com.nowabwagel.disgame;
 
 import com.jme3.app.SimpleApplication;
+import com.nowabwagel.disengine.entitysystem.DefaultEntityData;
+import com.nowabwagel.disengine.entitysystem.EntitySystem;
 
 /**
  *
@@ -8,8 +10,21 @@ import com.jme3.app.SimpleApplication;
  */
 public class Disgame extends SimpleApplication {
 
+    private EntitySystem entitySystem;
+    
+    public static void main(String[] args){
+        Disgame game = new Disgame();
+        game.start();
+    }
+    
     @Override
     public void simpleInitApp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entitySystem = new EntitySystem(new DefaultEntityData());
+        
+        
+    }
+    
+    public EntitySystem getEntitySystem(){
+        return entitySystem;
     }
 }
