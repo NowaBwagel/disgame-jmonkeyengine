@@ -1,0 +1,18 @@
+Material MyMaterial : Common/MatDefs/Misc/Unshaded.j3md {
+    MaterialParameters {
+        ColorMap : 3d_objects/primitives/textures/placeholder/D.png
+        Color : 0.2 0.8 0.0 1.0
+        GlowColor : 0.0 0.8 0.4 1.0
+    }
+    AdditionalRenderState {
+      FaceCull Back
+      Wireframe Off
+      DepthWrite On
+      PolyOffset 0.0 0.0
+      AlphaTestFalloff 0.0
+      Blend Off
+      PointSprite Off
+      ColorWrite On
+      DepthTest On
+    }
+}

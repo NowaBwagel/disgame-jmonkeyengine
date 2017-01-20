@@ -46,7 +46,7 @@ public class Entity {
         entitySet.getEntitySystem().processEntityEvent(new EntityEvent(this, component, EntityEvent.EventType.Change));
     }
 
-    public <T extends Component> void removeCOmponent(Class<T> componentClass) {
+    public <T extends Component> void removeComponent(Class<T> componentClass) {
         for (int i = 0; i < componentClasses.length; i++) {
             if (componentClasses[i] == componentClass) {
                 if (components[i] == null) {

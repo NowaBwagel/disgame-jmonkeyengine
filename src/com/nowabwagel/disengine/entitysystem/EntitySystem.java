@@ -40,7 +40,11 @@ public class EntitySystem {
         }
         
         for (EntityEventListener listener : this.entityChangeListeners) {
-            
+            if(fitsToListener(id, listener)){
+                for(int i = 0; i < components.length; i++){
+                    listener.receiveEntityEvent(events[i]);
+                }
+            }
         }
     }
     // Check if an entity has components the listener needs.
@@ -84,6 +88,7 @@ public class EntitySystem {
     }
     
     public EntitySet getEntitySet(Class<? extends Component> ... componentClasses){
+        
         Map<EntityId, Entity> entityMap = new HashMap<EntityId, Entity>();
         
         EntitySet entitySet = new EntitySet();

@@ -26,7 +26,7 @@ public class EntitySet implements EntityEventListener {
     private boolean isNew = true;
     private EntitySystem entitySystem;
 
-    public void init(EntitySystem entitySystem, Map<EntityId, Entity> entites, Class<? extends Component> componentClasses[]) {
+    public void init(EntitySystem entitySystem, Map<EntityId, Entity> entities, Class<? extends Component> componentClasses[]) {
         this.entities = entities;
         this.entitySystem = entitySystem;
         this.componentClasses = componentClasses;
@@ -35,7 +35,7 @@ public class EntitySet implements EntityEventListener {
         changedEntities = new HashSet();
         removedEntities = new HashSet();
 
-        Iterator<Entity> iterator = entites.values().iterator();
+        Iterator<Entity> iterator = entities.values().iterator();
         while (iterator.hasNext()) {
             addedEntities.add(iterator.next());
         }
@@ -44,7 +44,7 @@ public class EntitySet implements EntityEventListener {
     }
     //TODO: thinking abot changing to updateSetChanges
 
-    public boolean shouldApplySetChanges() {
+    public boolean updateSetChanges() {
         if (isNew) {
             isNew = false;
             return true;
