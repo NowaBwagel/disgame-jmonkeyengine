@@ -8,6 +8,7 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
+import com.jme3.terrain.geomipmap.TerrainQuad;
 import com.nowabwagel.disengine.appstates.CubeMovementAppState;
 import com.nowabwagel.disengine.appstates.EntityDisplayAppState;
 import com.nowabwagel.disengine.entitysystem.DefaultEntityData;
