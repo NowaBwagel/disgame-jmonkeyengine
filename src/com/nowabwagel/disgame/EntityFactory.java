@@ -20,14 +20,16 @@ public class EntityFactory {
         entitySystem = eS;
     }
     
-    public static void createCube(Vector3f v3f, Quaternion quat){
-        Component[] components = new Component[4];
-        components[0] = new VisualRepComponent("/Models/box.j3o");
+    public static void createTree(Vector3f v3f, Quaternion quat){
+        Component[] components = new Component[3];
+        components[0] = new VisualRepComponent("/Models/PineTree/PineTree.j3o");
         
         components[1] = new InSceneComponent(true);
         components[2] = new PositionComponent(v3f, quat);
-        components[3] = new TagComponent("cube");
+        //components[3] = new TagComponent("cube");
         
         entitySystem.newEntity(components);
     }
+    
+    
 }
