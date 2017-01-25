@@ -6,6 +6,11 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.ssao.SSAOFilter;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
+import com.jme3.shadow.DirectionalLightShadowFilter;
+import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
 import com.jme3.terrain.heightmap.AbstractHeightMap;
@@ -31,6 +36,12 @@ public class Disgame extends SimpleApplication {
     }
 
     @Override
+    public void update() {
+        super.update();
+        //System.out.println(cam.getLocation());
+    }
+
+    @Override
     public void simpleInitApp() {
         flyCam.setMoveSpeed(50);
         cam.setLocation(new Vector3f(0f, 5f, 0f));
@@ -43,27 +54,26 @@ public class Disgame extends SimpleApplication {
         this.stateManager.attach(new CubeMovementAppState());
 
 
-        for (int x = -64; x < 64; x++) {
-            for (int z = -64; z < 64; z++) {
-                double ran = Math.random() * 100;
-                System.out.println(ran);
-                if (ran < 2) {
-                    EntityFactory.createTree(new Vector3f(x, 0, z), Quaternion.ZERO);
-                }
-            }
-        }
-        EntityFactory.createTree(Vector3f.ZERO, Quaternion.ZERO);
+        EntityFactory.createTree(new Vector3f(15, 0, 15), Quaternion.ZERO);
+        //EntityFactory.createTree(Vector3f.ZERO, Quaternion.ZERO);
 
         DirectionalLight sun = new DirectionalLight();
         sun.setDirection(new Vector3f(-0.1f, -0.7f, -1.0f));
         rootNode.addLight(sun);
 
         viewPort.setBackgroundColor(ColorRGBA.DarkGray);
-        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        mat.setBoolean("UseMaterialColors", true);
-        mat.setColor("Ambient", ColorRGBA.Green);
-        mat.setColor("Diffuse", ColorRGBA.Green);
+        Texture terrainTexture = assetManager.loadTexture("Textures/TerrainTexture.png");
+        terrainTexture.setWrap(Texture.WrapMode.Repeat);
 
+        Material terrainMat = assetManager.loadMaterial("Materials/TerrainTest.j3m");
+        terrainMat.setFloat("Tex1Scale", 4f);
+        // Material terrainMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        //terrainMat.setTexture("DiffuseMap", terrainTexture);
+
+        //terrainMat.setBoolean("UseMaterialColors", true);
+        //terrainMat.setColor("Ambient", ColorRGBA.Green);
+        //terrainMat.setColor("Diffuse", ColorRGBA.Green);
+        //terrainMat.getAdditionalRenderState().setWireframe(true);
 
         flyCam.setEnabled(true);
 
@@ -73,17 +83,21 @@ public class Disgame extends SimpleApplication {
         heightMap.load();
         heightMap.erodeTerrain();
 
-        int patchSize = 65;
+        int patchSize = 129;
         terrain = new TerrainQuad("my terrain", patchSize, 513, heightMap.getHeightMap());
 
-        terrain.setMaterial(mat);
+        terrain.setMaterial(terrainMat);
         terrain.setLocalTranslation(0, 0, 0);
-        terrain.setLocalScale(0.25f, 1f, 0.25f);
+        terrain.setLocalScale(2f, 1f, 2f);
+        terrain.setShadowMode(ShadowMode.Receive);
 
         rootNode.attachChild(terrain);
 
         TerrainLodControl terrainControl = new TerrainLodControl(terrain, getCamera());
         terrain.addControl(terrainControl);
+
+
+        EntityFactory.createPlayer(Vector3f.ZERO, Quaternion.ZERO);
     }
 
     public EntitySystem getEntitySystem() {

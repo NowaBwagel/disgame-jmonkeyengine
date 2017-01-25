@@ -1,0 +1,13 @@
+Material My Material : Common/MatDefs/Terrain/Terrain.j3md {
+     MaterialParameters {
+        Tex1 : Repeat Textures/TerrainTexture.png
+        Tex1Scale : 256.0
+        useTriPlanarMapping : false
+        Tex2 : Textures/dirt.jpg
+        Alpha : Textures/TerrainAlpha.png
+        Tex2Scale : 8.0
+     }
+    AdditionalRenderState {
+      Wireframe Off
+    }
+}

@@ -8,6 +8,7 @@ import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Node;
 import com.nowabwagel.disengine.components.InSceneComponent;
 import com.nowabwagel.disengine.components.PositionComponent;
@@ -35,6 +36,7 @@ public class EntityDisplayAppState extends AbstractAppState {
 
     public EntityDisplayAppState(Node node) {
         rootNode = node;
+        rootNode.setShadowMode(ShadowMode.CastAndReceive);
     }
 
     @Override
